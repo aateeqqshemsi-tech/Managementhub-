@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f97316" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FoodOrdering" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest">
+    <title>Online Food Ordering & Delivery</title>
+    <meta name="description" content="Order authentic food online. Fast doorstep delivery, chef-curated menus, live kitchen updates, and digital takeaways." />
+    <meta property="og:title" content="Online Food Ordering & Delivery" />
+    <meta property="og:description" content="Order authentic food online. Fast doorstep delivery, chef-curated menus, live kitchen updates, and digital takeaways." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600;1,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin href="/assets/index-DexBHdcg.css">
+    <style id="dynamic-card-style">
+      /* Dynamic Card & Box Background styling - applies custom card/box colors across all components */
+      html[style*="--card-bg"] .bg-slate-900,
+      html[style*="--card-bg"] .bg-slate-900\/90,
+      html[style*="--card-bg"] .bg-slate-900\/80,
+      html[style*="--card-bg"] .bg-slate-900\/60,
+      html[style*="--card-bg"] .bg-slate-900\/50,
+      html[style*="--card-bg"] .bg-slate-950\/70,
+      html[style*="--card-bg"] .bg-slate-950\/60,
+      html[style*="--card-bg"] .bg-slate-950\/80,
+      html[style*="--card-bg"] .bg-slate-950\/40,
+      html[data-theme] .bg-slate-900,
+      html[data-theme] .bg-slate-900\/90,
+      html[data-theme] .bg-slate-900\/80,
+      html[data-theme] .bg-slate-900\/60,
+      html[data-theme] .bg-slate-900\/50,
+      html[data-theme] .bg-slate-950\/70,
+      html[data-theme] .bg-slate-950\/60,
+      html[data-theme] .bg-slate-950\/80,
+      html[data-theme] .bg-slate-950\/40 {
+        background-color: var(--card-bg) !important;
+      }
+
+      /* Inner nested wells or table headers slightly darker with natural depth */
+      html[style*="--card-bg"] .bg-slate-950:not(.min-h-screen),
+      html[data-theme] .bg-slate-950:not(.min-h-screen) {
+        background-color: color-mix(in srgb, var(--card-bg) 75%, #000 25%) !important;
+      }
+
+      /* Card borders with subtle translucency */
+      html[style*="--card-bg"] .border-slate-800,
+      html[style*="--card-bg"] .border-slate-800\/80,
+      html[data-theme] .border-slate-800,
+      html[data-theme] .border-slate-800\/80 {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      /* Canvas Background overrides */
+      html[style*="--bg"] body,
+      html[style*="--bg"] .bg-slate-950.min-h-screen,
+      html[style*="--bg"] .min-h-screen.bg-slate-950 {
+        background-color: var(--bg) !important;
+      }
+
+      /* Fix Task 4: Customer Storefront Top Bar & Header Collision Alignment */
+      .sticky.top-0 {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 50 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+      }
+
+      header.sticky.top-8 {
+        position: sticky !important;
+        top: 48px !important;
+        z-index: 40 !important;
+      }
+
+      @media (max-width: 768px) {
+        .sticky.top-0 {
+          position: relative !important;
+        }
+        header.sticky.top-8 {
+          position: relative !important;
+          top: 0 !important;
+          margin-top: 4px !important;
+        }
+      }
+
+      /* Ensure Exit and Status buttons never collide or overlap */
+      .storefront-action-bar,
+      header > div {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        align-items: center !important;
+      }
+
+      /* Advanced Customer Storefront Dish Photo Presentation Engine */
+      :root {
+        --store-dish-img-mode: horizontal;
+      }
+
+      /* Dish Cards Picture Container */
+      .group:has(button[class*="Cart"]) .relative.h-48,
+      [data-dish-image-container] {
+        overflow: hidden !important;
+        position: relative !important;
+        background: #020617 !important;
+        border-top-left-radius: 1rem !important;
+        border-top-right-radius: 1rem !important;
+        transition: height 0.25s ease, aspect-ratio 0.25s ease !important;
+      }
+
+      [data-dish-image-container] img,
+      .group:has(button[class*="Cart"]) .relative.h-48 img {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+        transition: transform 0.3s ease, filter 0.3s ease !important;
+      }
+
+      /* 1. Wide Landscape Mode (16:9) */
+      html[data-dish-image-mode="horizontal"] [data-dish-image-container],
+      html[data-dish-image-mode="horizontal"] .group:has(button[class*="Cart"]) .relative.h-48 {
+        aspect-ratio: 16 / 9 !important;
+        height: auto !important;
+        min-height: 170px !important;
+        max-height: 240px !important;
+      }
+      html[data-dish-image-mode="horizontal"] [data-dish-image-container] img,
+      html[data-dish-image-mode="horizontal"] .group:has(button[class*="Cart"]) .relative.h-48 img {
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+
+      /* 2. Portrait / Reels Tall Mode (3:4) */
+      html[data-dish-image-mode="vertical"] [data-dish-image-container],
+      html[data-dish-image-mode="vertical"] .group:has(button[class*="Cart"]) .relative.h-48 {
+        aspect-ratio: 3 / 4 !important;
+        height: auto !important;
+        min-height: 260px !important;
+        max-height: 360px !important;
+      }
+      html[data-dish-image-mode="vertical"] [data-dish-image-container] img,
+      html[data-dish-image-mode="vertical"] .group:has(button[class*="Cart"]) .relative.h-48 img {
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+
+      /* 3. Original Natural Fit Mode (Zero Crop) */
+      html[data-dish-image-mode="natural"] [data-dish-image-container],
+      html[data-dish-image-mode="natural"] .group:has(button[class*="Cart"]) .relative.h-48 {
+        height: 200px !important;
+        background: #090d16 !important;
+      }
+      html[data-dish-image-mode="natural"] [data-dish-image-container] img,
+      html[data-dish-image-mode="natural"] .group:has(button[class*="Cart"]) .relative.h-48 img {
+        object-fit: contain !important;
+        background: #020617 !important;
+      }
+
+      /* 4. Perfect Square Mode (1:1 Box) */
+      html[data-dish-image-mode="square"] [data-dish-image-container],
+      html[data-dish-image-mode="square"] .group:has(button[class*="Cart"]) .relative.h-48 {
+        aspect-ratio: 1 / 1 !important;
+        height: auto !important;
+        min-height: 220px !important;
+        max-height: 290px !important;
+      }
+      html[data-dish-image-mode="square"] [data-dish-image-container] img,
+      html[data-dish-image-mode="square"] .group:has(button[class*="Cart"]) .relative.h-48 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+
+      /* 5. Circular / Round Mode (1:1 Circle Badge) */
+      html[data-dish-image-mode="circle"] [data-dish-image-container],
+      html[data-dish-image-mode="circle"] .group:has(button[class*="Cart"]) .relative.h-48 {
+        aspect-ratio: 1 / 1 !important;
+        width: 170px !important;
+        height: 170px !important;
+        border-radius: 9999px !important;
+        margin: 14px auto 6px auto !important;
+        overflow: hidden !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+        border: 3px solid rgba(255,255,255,0.15) !important;
+      }
+      html[data-dish-image-mode="circle"] [data-dish-image-container] img,
+      html[data-dish-image-mode="circle"] .group:has(button[class*="Cart"]) .relative.h-48 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 9999px !important;
+      }
+
+      /* Per-Dish Framing Overrides */
+      [data-dish-fit="natural"] img,
+      [data-dish-fit="contain"] img {
+        object-fit: contain !important;
+        background: #020617 !important;
+      }
+      [data-dish-fit="cover"] img {
+        object-fit: cover !important;
+      }
+
+      /* =========================================================================
+         STRICT 1:1 SQUARE QR BARCODE IMAGE ONLY (Leaves Table Card Layout Untouched)
+         ========================================================================= */
+      img[alt*="QR" i],
+      img[src*="create-qr-code" i] {
+        aspect-ratio: 1 / 1 !important;
+        object-fit: contain !important;
+      }
+
+      /* Enhanced Print Isolation for Table Tent Cards & POS Receipt Slips with Restaurant Logo */
+      @media print {
+        @page {
+          size: auto;
+          margin: 5mm;
+        }
+        body {
+          background: #ffffff !important;
+          color: #000000 !important;
+        }
+        body * {
+          visibility: hidden !important;
+        }
+
+        /* 1. POS Thermal Receipt Slips Isolation */
+        #printable-receipt,
+        #printable-receipt *,
+        .printable-slip,
+        .printable-slip *,
+        #pos-slip-thermal-area,
+        #pos-slip-thermal-area *,
+        .receipt-slip-preview,
+        .receipt-slip-preview *,
+        #receipt-slip-modal,
+        #receipt-slip-modal > div {
+          visibility: visible !important;
+        }
+
+        #receipt-slip-modal {
+          background: transparent !important;
+          backdrop-filter: none !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        div:has(#printable-receipt),
+        div:has(#pos-slip-thermal-area),
+        div:has(#printable-card) {
+          overflow: visible !important;
+          background: transparent !important;
+          backdrop-filter: none !important;
+        }
+
+        #printable-receipt,
+        .printable-slip,
+        #pos-slip-thermal-area {
+          max-height: none !important;
+          overflow: visible !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 78mm !important;
+          max-width: 100% !important;
+          padding: 8px !important;
+          border: none !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+          color: #000000 !important;
+          font-family: 'Courier New', Courier, monospace, monospace !important;
+          font-size: 11px !important;
+          line-height: 1.35 !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+          display: block !important;
+          z-index: 999999 !important;
+        }
+
+        #printable-receipt img,
+        .printable-slip img,
+        .slip-logo,
+        .receipt-logo {
+          visibility: visible !important;
+          display: block !important;
+          max-height: 60px !important;
+          max-width: 140px !important;
+          object-fit: contain !important;
+          margin: 0 auto 6px auto !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        /* 2. Table Tent QR Cards Isolation */
+        #printable-card,
+        #printable-card * {
+          visibility: visible !important;
+        }
+        #printable-card {
+          position: fixed !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          width: 380px !important;
+          max-width: 100% !important;
+          padding: 24px !important;
+          border: 3px solid #f97316 !important;
+          border-radius: 24px !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+          color: #000000 !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+        }
+        #printable-card img[alt*="QR" i] {
+          width: 220px !important;
+          height: 220px !important;
+          aspect-ratio: 1 / 1 !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+          display: block !important;
+        }
+      }
+    </style>
+    <script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script>
+    <script id="mghub-persistence-vault-guard">
+      // ManagementHub Enterprise Multi-Tier Persistence & Restaurant Customization Suite
+      (function() {
+        // Pre-hydration helper: populate initial localStorage if server has data and user is not in clean zero state
+        try {
+          var isZero = localStorage.getItem('bitehub_zero_state') === 'true';
+          var currentRests = localStorage.getItem('bitehub_pkr_restaurants_v2');
+          if (!isZero && (!currentRests || currentRests === 'null')) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/api/sync/state', false);
+            xhr.send(null);
+            if (xhr.status === 200) {
+              var sJson = JSON.parse(xhr.responseText);
+              if (sJson && sJson.data) {
+                if (Array.isArray(sJson.data.restaurants)) {
+                  localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(sJson.data.restaurants));
+                }
+                if (Array.isArray(sJson.data.menuItems)) {
+                  localStorage.setItem('bitehub_pkr_items_v2', JSON.stringify(sJson.data.menuItems));
+                }
+                if (Array.isArray(sJson.data.orders)) {
+                  localStorage.setItem('bitehub_pkr_orders_v2', JSON.stringify(sJson.data.orders));
+                }
+                if (sJson.data.branding) {
+                  localStorage.setItem('bitehub_app_branding_v3', JSON.stringify(sJson.data.branding));
+                }
+              }
+            }
+          }
+        } catch(e) {}
+
+        // Dynamic White-Label Brand Masking for Restaurant Direct Link (Removes all generic platform branding)
+        try {
+          var p = new URLSearchParams(window.location.search);
+          var storeSlug = p.get('store') || p.get('r') || p.get('restaurant') ||
+            (window.location.hash.includes('store=') ? window.location.hash.split('store=')[1].split('&')[0] : null) ||
+            (window.location.pathname.startsWith('/store/') ? window.location.pathname.replace('/store/', '').split('/')[0] : null);
+
+          if (storeSlug) {
+            var rawRests = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            if (rawRests) {
+              var parsedRests = JSON.parse(rawRests);
+              var matched = parsedRests.find(function(r) {
+                return (r.slug && r.slug.toLowerCase() === storeSlug.toLowerCase()) || (r.id && r.id.toLowerCase() === storeSlug.toLowerCase());
+              });
+              if (matched) {
+                document.title = matched.name + ' - Official Storefront';
+                if (matched.logoUrl) {
+                  var iconEl = document.querySelector("link[rel*='icon']");
+                  if (iconEl) iconEl.href = matched.logoUrl;
+                }
+                var appTitleMeta = document.querySelector("meta[name='apple-mobile-web-app-title']");
+                if (appTitleMeta) appTitleMeta.setAttribute('content', matched.name);
+              }
+            }
+          }
+        } catch(e) {}
+
+        const VAULT_KEY = 'bitehub_permanent_vault_v2';
+        const STORAGE_KEYS = [
+          'bitehub_pkr_restaurants_v2',
+          'bitehub_pkr_items_v2',
+          'bitehub_pkr_orders_v2',
+          'bitehub_superadmin_creds_v2',
+          'bitehub_customers_v3',
+          'bitehub_subscription_plans_v2',
+          'bitehub_plan_payments_v2',
+          'bitehub_app_branding_v3',
+          'bitehub_daily_special_offers_v2',
+          'bitehub_restaurant_tables_v1',
+          'bitehub_loyalty_config_v2'
+        ];
+
+        // 1. Permanent IndexedDB Engine
+        const DB_NAME = 'ManagementHubPermanentDB';
+        const DB_STORE = 'vault_store';
+        let idb = null;
+
+        function initIDB() {
+          return new Promise(function(resolve) {
+            try {
+              const req = indexedDB.open(DB_NAME, 1);
+              req.onupgradeneeded = function(e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(DB_STORE)) {
+                  db.createObjectStore(DB_STORE);
+                }
+              };
+              req.onsuccess = function(e) {
+                idb = e.target.result;
+                resolve(idb);
+              };
+              req.onerror = function() { resolve(null); };
+            } catch (err) {
+              resolve(null);
+            }
+          });
+        }
+
+        async function saveIDB(key, val) {
+          try {
+            const db = idb || await initIDB();
+            if (!db) return;
+            const tx = db.transaction(DB_STORE, 'readwrite');
+            if (val === null || val === undefined) {
+              tx.objectStore(DB_STORE).delete(key);
+            } else {
+              tx.objectStore(DB_STORE).put(val, key);
+            }
+          } catch (e) {}
+        }
+
+        async function getIDB(key) {
+          try {
+            const db = idb || await initIDB();
+            if (!db) return null;
+            return new Promise(function(res) {
+              const tx = db.transaction(DB_STORE, 'readonly');
+              const req = tx.objectStore(DB_STORE).get(key);
+              req.onsuccess = function() { res(req.result); };
+              req.onerror = function() { res(null); };
+            });
+          } catch (e) { return null; }
+        }
+
+        // Global Vault Purge Helper: guarantees 100% clean wipe during reset without resurrection
+        window.purgeVaultAndStorage = async function() {
+          try {
+            localStorage.setItem('bitehub_zero_state', 'true');
+            localStorage.removeItem('bitehub_last_user_edit_ts');
+            localStorage.removeItem(VAULT_KEY);
+            for (const k of STORAGE_KEYS) {
+              localStorage.removeItem(k);
+            }
+            await saveIDB('persistent_vault_snapshot', null);
+            console.log('[SyncEngine] Vault and local storage completely purged.');
+          } catch (err) {
+            console.warn('[SyncEngine] Error purging vault:', err);
+          }
+        };
+
+        async function backupToVault() {
+          // If platform has been intentionally reset to clean zero state, do not re-populate vault
+          if (localStorage.getItem('bitehub_zero_state') === 'true') {
+            return;
+          }
+          try {
+            const vault = {};
+            for (const k of STORAGE_KEYS) {
+              const val = localStorage.getItem(k);
+              if (val) {
+                try { vault[k] = JSON.parse(val); } catch { vault[k] = val; }
+              }
+            }
+            if (Object.keys(vault).length > 0) {
+              localStorage.setItem(VAULT_KEY, JSON.stringify(vault));
+              await saveIDB('persistent_vault_snapshot', vault);
+            }
+          } catch (e) {
+            console.warn('[Vault] Backup error:', e);
+          }
+        }
+
+        // Listen for reset events from SSE or tabs
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'bitehub_zero_state' && e.newValue === 'true') {
+            window.purgeVaultAndStorage();
+          }
+        });
+
+        // 3. Dynamic Restaurant PWA Manifest & App Downloader (Task 3)
+        function checkAndApplyRestaurantPWA() {
+          try {
+            const params = new URLSearchParams(window.location.search);
+            const storeParam = params.get('store') || params.get('restaurant') || params.get('r') || '';
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            if (!restsRaw) return;
+            const rests = JSON.parse(restsRaw);
+            if (!Array.isArray(rests) || rests.length === 0) return;
+
+            let targetRest = null;
+            if (storeParam) {
+              const cleanParam = storeParam.replace(/-+$/, '').toLowerCase();
+              targetRest = rests.find(r => (r.slug && r.slug.replace(/-+$/, '').toLowerCase() === cleanParam) || r.id.toLowerCase() === cleanParam || (r.name && r.name.toLowerCase() === cleanParam));
+            }
+            if (!targetRest) {
+              const path = window.location.pathname;
+              if (path.startsWith('/store/')) {
+                const pSlug = path.replace('/store/', '').split('/')[0].replace(/-+$/, '').toLowerCase();
+                targetRest = rests.find(r => (r.slug && r.slug.replace(/-+$/, '').toLowerCase() === pSlug) || r.id.toLowerCase() === pSlug);
+              }
+            }
+            if (!targetRest) {
+              // Check if hostname matches any restaurant customDomain
+              const host = window.location.hostname.toLowerCase();
+              if (!host.includes('run.app') && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+                targetRest = rests.find(r => r.customDomain && (r.customDomain.toLowerCase().includes(host) || host.includes((r.slug || '').toLowerCase())));
+              }
+            }
+
+            // Super Admin Logo Retrieval Helper
+            const adminLogo = getSuperAdminLogo();
+
+            if (targetRest) {
+              const rName = targetRest.name || 'Restaurant';
+              const rLogo = targetRest.logoUrl || adminLogo;
+              const rColor = targetRest.primaryColor || '#f97316';
+              const storeUrl = formatDirectStoreUrl(targetRest);
+
+              // Set Favicon to this restaurant's own logo
+              let favIcon = document.querySelector('link[rel="icon"]');
+              if (favIcon && favIcon.href !== rLogo) favIcon.href = rLogo;
+              let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+              if (appleIcon && appleIcon.href !== rLogo) appleIcon.href = rLogo;
+
+              // Update Mobile App Title for target restaurant
+              document.title = `${rName} - Official Food Ordering`;
+              let appleTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+              if (appleTitle) appleTitle.content = rName;
+
+              let themeMeta = document.querySelector('meta[name="theme-color"]');
+              if (themeMeta) themeMeta.content = rColor;
+
+              // Apply this restaurant's chosen dish picture shape (Square, Landscape, Reel, Natural, Circle)
+              const savedMode = localStorage.getItem('bitehub_dish_image_mode_' + targetRest.id);
+              const rMode = targetRest.imageOrientation || savedMode || 'square';
+              if (document.documentElement.getAttribute('data-dish-image-mode') !== rMode) {
+                document.documentElement.setAttribute('data-dish-image-mode', rMode);
+              }
+
+              // Generate Dynamic W3C Manifest Blob with Restaurant Name and Logo
+              const manifestData = {
+                name: `${rName} App`,
+                short_name: rName.length > 12 ? rName.substring(0, 12) : rName,
+                description: targetRest.tagline || `Order food directly from ${rName}`,
+                start_url: window.location.origin + '/?store=' + encodeURIComponent(targetRest.slug || targetRest.id),
+                display: "standalone",
+                background_color: "#0f172a",
+                theme_color: rColor,
+                scope: "/",
+                id: window.location.origin + '/?store=' + encodeURIComponent(targetRest.slug || targetRest.id),
+                icons: [
+                  { src: rLogo, sizes: "192x192", type: "image/png", purpose: "any maskable" },
+                  { src: rLogo, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+                ]
+              };
+
+              const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/manifest+json' });
+              const blobUrl = URL.createObjectURL(blob);
+              let manifestLink = document.querySelector('link[rel="manifest"]');
+              if (manifestLink) manifestLink.href = blobUrl;
+            } else {
+              document.title = "ManagementHub Enterprise Food Cloud Suite";
+              let favIcon = document.querySelector('link[rel="icon"]');
+              if (favIcon && favIcon.href !== adminLogo) favIcon.href = adminLogo;
+              let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+              if (appleIcon && appleIcon.href !== adminLogo) appleIcon.href = adminLogo;
+            }
+          } catch (e) {
+            console.warn('[PWA] Manifest error:', e);
+          }
+        }
+
+        // Helper to retrieve the Super Admin's logo
+        function getSuperAdminLogo() {
+          try {
+            const brandingRaw = localStorage.getItem('bitehub_app_branding_v3');
+            if (brandingRaw) {
+              const b = JSON.parse(brandingRaw);
+              if (b && b.logoUrl && b.logoUrl.trim()) return b.logoUrl.trim();
+            }
+          } catch(e) {}
+          return '/icon.svg';
+        }
+
+        // DOM Sanitizer: Format restaurant slugs nicely in admin mono tags if present
+        function sanitizeVisibleAdminLinks() {
+          try {
+            const monoSpans = document.querySelectorAll('span.font-mono, span[class*="text-amber-300"], div[class*="font-mono"]');
+            monoSpans.forEach(function(span) {
+              if (span.textContent && (span.textContent.includes('run.app?store=') || span.textContent.includes('ais-pre') || span.textContent.includes('ais-dev'))) {
+                const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+                if (restsRaw) {
+                  const rests = JSON.parse(restsRaw);
+                  for (const r of rests) {
+                    if (span.textContent.includes(r.slug) || span.textContent.includes(r.id)) {
+                      span.textContent = formatDirectStoreUrl(r);
+                      if (span.title && (span.title.includes('run.app') || span.title.includes('ais-'))) {
+                        span.title = formatDirectStoreUrl(r);
+                      }
+                      break;
+                    }
+                  }
+                }
+              }
+            });
+          } catch(e) {}
+        }
+
+        // 4. Task 4: Fix Overlapping "Open Kitchen" / Status and "Exit" in Customer View
+        function alignStorefrontHeaderButtons() {
+          try {
+            // Find storefront header top bar
+            const topBars = document.querySelectorAll('.sticky.top-0, div[class*="backdrop-blur-md"]');
+            topBars.forEach(bar => {
+              if (bar.textContent && (bar.textContent.includes('Storefront') || bar.textContent.includes('Exit to App'))) {
+                bar.style.display = 'flex';
+                bar.style.flexWrap = 'wrap';
+                bar.style.gap = '10px';
+                bar.style.alignItems = 'center';
+                bar.style.justifyContent = 'space-between';
+                bar.style.position = 'relative';
+                bar.style.zIndex = '50';
+              }
+            });
+
+            // Adjust header below top bar
+            const headers = document.querySelectorAll('header.sticky');
+            headers.forEach(h => {
+              h.style.position = 'relative';
+              h.style.top = '0px';
+              h.style.zIndex = '40';
+              h.style.marginTop = '0px';
+            });
+          } catch (e) {}
+        }
+
+        function formatDirectStoreUrl(rest) {
+          if (!rest) return window.location.origin;
+          const cleanSlug = (rest.slug || rest.id || 'restaurant').replace(/[^a-z0-9_-]/gi, '').replace(/-+$/, '');
+          return window.location.origin + '/?store=' + encodeURIComponent(cleanSlug);
+        }
+
+        // DNS Setup Guide Modal for Custom Domain Connection
+        window.openDnsGuideModal = function(restaurant, directUrl, currentDomain) {
+          let oldModal = document.getElementById('dns-guide-modal');
+          if (oldModal) oldModal.remove();
+
+          const cDomain = (currentDomain || restaurant.customDomain || 'apna-restaurant.com').replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+          const cnameTarget = window.location.hostname;
+          const embedHtml = '<!DOCTYPE html>\\n<html lang="en">\\n<head>\\n  <meta charset="UTF-8">\\n  <title>' + (restaurant.name || 'Store') + ' - Official Storefront</title>\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <" + "style>body,html{margin:0;padding:0;width:100%;height:100%;overflow:hidden;}iframe{width:100%;height:100%;border:none;}</style>\\n<' + '/head>\\n<body>\\n  <iframe src="' + directUrl + '" allow="geolocation; camera; payment"><' + '/iframe>\\n<' + '/body>\\n<' + '/html>';
+
+          const modal = document.createElement('div');
+          modal.id = 'dns-guide-modal';
+          modal.style.cssText = 'position:fixed;inset:0;z-index:99999999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid #38bdf8;border-radius:24px;max-width:560px;width:100%;padding:24px;color:#f8fafc;font-family:sans-serif;box-shadow:0 25px 50px -12px rgba(0,0,0,0.8);max-height:92vh;overflow-y:auto;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:24px;">🌐</span>
+                  <div>
+                    <h3 style="margin:0;font-size:16px;font-weight:800;color:#38bdf8;">Custom Domain Setup Guide</h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">Domain: <strong style="color:#fff;">${cDomain}</strong></p>
+                  </div>
+                </div>
+                <button id="close-dns-modal" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:32px;height:32px;border-radius:10px;cursor:pointer;">✕</button>
+              </div>
+
+              <!-- Notice -->
+              <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;margin-bottom:16px;font-size:11px;color:#cbd5e1;line-height:1.5;">
+                <strong style="color:#f59e0b;">💡 Domain URL Kyun Kaam Nahi Kar Raha Tha?</strong><br>
+                Jab aap koi domain (e.g. <code>${cDomain}</code>) likhte hain, toh browser ko batana parta hai ke yeh domain kis server se connect ho. Niche diye gaye <strong>2 aasan tareeqon</strong> mein se koi ek use karein:
+              </div>
+
+              <!-- Option 1: CNAME Record -->
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:16px;padding:14px;margin-bottom:14px;">
+                <h4 style="margin:0 0 8px 0;font-size:12px;font-weight:800;color:#38bdf8;">Option 1: Domain DNS CNAME Record (GoDaddy, Namecheap, Cloudflare)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Apne Domain Registrar ke DNS Management mein yeh CNAME record add karein:</p>
+                <div style="background:#020617;border-radius:10px;padding:10px;font-family:monospace;font-size:11px;display:flex;flex-direction:column;gap:4px;">
+                  <div><strong style="color:#f59e0b;">Type:</strong> CNAME</div>
+                  <div><strong style="color:#f59e0b;">Host / Name:</strong> @ (ya www ya store)</div>
+                  <div style="display:flex;align-items:center;gap:6px;"><strong style="color:#f59e0b;">Points To:</strong> <span style="color:#38bdf8;word-break:break-all;">${cnameTarget}</span></div>
+                </div>
+                <button id="copy-cname-target-btn" style="margin-top:8px;background:#0284c7;color:#fff;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy CNAME Target</button>
+              </div>
+
+              <!-- Option 2: 1-Minute InfinityFree / Web Hosting Embed (100% Guaranteed Instant) -->
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:16px;padding:14px;margin-bottom:14px;">
+                <h4 style="margin:0 0 8px 0;font-size:12px;font-weight:800;color:#10b981;">Option 2: Free 1-Minute Embed (InfinityFree / cPanel / Hostinger)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Agar aap InfinityFree ya koi bhi web hosting use kar rahe hain, toh apne <code>public_html/index.html</code> mein yeh code paste karein — aapki domain par foran restaurant open ho jayega:</p>
+                <button id="copy-embed-code-btn" style="background:#059669;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy 1-Page Embed Code</button>
+              </div>
+
+              <!-- Option 3: Live Direct Link -->
+              <div style="background:#020617;border:1px solid #334155;border-radius:16px;padding:14px;">
+                <h4 style="margin:0 0 6px 0;font-size:12px;font-weight:800;color:#f59e0b;">🚀 Live Direct Link (Abhi 100% Active Hai)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Yeh link bina kisi DNS setup ke abhi browser mein foran open hota hai:</p>
+                <div style="display:flex;gap:8px;">
+                  <input readonly value="${directUrl}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:6px 10px;font-size:11px;color:#38bdf8;font-family:monospace;" />
+                  <button id="test-direct-link-btn" style="background:#f97316;color:#fff;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Test Live</button>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;text-align:right;">
+                <button id="close-dns-guide-bottom" style="background:#334155;color:#fff;border:none;padding:8px 18px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">Close Guide</button>
+              </div>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          document.getElementById('close-dns-modal').onclick = () => modal.remove();
+          document.getElementById('close-dns-guide-bottom').onclick = () => modal.remove();
+          document.getElementById('copy-cname-target-btn').onclick = () => {
+            navigator.clipboard.writeText(cnameTarget);
+            alert('CNAME Target Copied: ' + cnameTarget);
+          };
+          document.getElementById('copy-embed-code-btn').onclick = () => {
+            navigator.clipboard.writeText(embedHtml.replace(/\\\\n/g, '\\n'));
+            alert('HTML Embed Code Copied!\n\nApni hosting ke public_html/index.html mein paste karein.');
+          };
+          document.getElementById('test-direct-link-btn').onclick = () => {
+            window.open(directUrl, '_blank');
+          };
+        };
+
+        // 5. Task 2 & Task 5: Super Admin Per-Restaurant Theme & Direct Link Manager
+        
+        // =========================================================================
+        
+        window.openRestaurantThemeEditor = function(restId) {
+          const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+          let rests = [];
+          try { rests = JSON.parse(restsRaw) || []; } catch {}
+          const restaurant = rests.find(r => r.id === restId || r.slug === restId) || rests[0];
+          if (!restaurant) {
+            alert('Restaurant not found!');
+            return;
+          }
+
+          let modal = document.getElementById('restaurant-theme-manager-modal');
+          if (modal) modal.remove();
+
+          const presets = [
+            { name: 'Royal Saffron & Amber Gold', p: '#f59e0b', s: '#b45309', badge: '👑 Luxury Desi & Biryani' },
+            { name: 'Emerald Mint & Fresh Herb', p: '#10b981', s: '#047857', badge: '🌿 Traditional Karahi' },
+            { name: 'Crimson BBQ Flame', p: '#ef4444', s: '#991b1b', badge: '🔥 Steaks & Fast Food' },
+            { name: 'Imperial Amethyst & Violet', p: '#8b5cf6', s: '#6d28d9', badge: '💎 Gourmet & Bistro' },
+            { name: 'Ocean Azure & Cyan', p: '#06b6d4', s: '#0284c7', badge: '🌊 Cafe & Seafood' },
+            { name: 'Rose Pink & Sweet Berry', p: '#ec4899', s: '#be185d', badge: '🌸 Bakery & Desserts' },
+            { name: 'Charcoal Titanium Minimal', p: '#64748b', s: '#334155', badge: '🖤 Modern Urban' }
+          ];
+
+          const directUrl = formatDirectStoreUrl(restaurant);
+
+          modal = document.createElement('div');
+          modal.id = 'restaurant-theme-manager-modal';
+          modal.style.cssText = 'position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+          
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid #334155;border-radius:24px;max-width:540px;width:100%;padding:24px;color:#f8fafc;font-family:sans-serif;box-shadow:0 25px 50px -12px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto;">
+              <div style="display:flex;align-items:center;justify-content:between;margin-bottom:18px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <img src="${restaurant.logoUrl || '/icon.svg'}" style="width:44px;height:44px;border-radius:14px;object-fit:cover;border:2px solid ${restaurant.primaryColor || '#f97316'};" />
+                  <div>
+                    <h3 style="margin:0;font-size:16px;font-weight:800;color:#fff;">🎨 Customize Theme: ${restaurant.name}</h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">Set dedicated colors, layout, and direct storefront link for this restaurant</p>
+                  </div>
+                </div>
+                <button id="close-theme-modal" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:32px;height:32px;border-radius:10px;cursor:pointer;margin-left:auto;">✕</button>
+              </div>
+
+              <!-- Task: Automatic Line-to-URL Generator -->
+              <div style="background:#1e293b;border:1px solid #0284c7;border-radius:16px;padding:14px;margin-bottom:16px;box-shadow:0 4px 12px rgba(2,132,199,0.15);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <label style="font-size:11px;font-weight:800;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;">⚡ Auto-Generate URL From Any Line / Name:</label>
+                  <span style="font-size:10px;background:#0369a1;color:#fff;padding:2px 8px;border-radius:6px;font-weight:bold;">Instant Auto-Slug</span>
+                </div>
+                <p style="font-size:10px;color:#94a3b8;margin:0 0 8px 0;">Yahan koi bhi line, slogan ya restaurant ka naam likhein — uska clean direct URL khud ba khud generate ho jayega:</p>
+                <div style="display:flex;gap:8px;margin-bottom:8px;">
+                  <input id="auto-slug-input" type="text" placeholder="e.g. Al Rehman Biryani & Fast Food" value="${restaurant.name || ''}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;font-weight:600;" />
+                  <button id="auto-slug-generate-btn" type="button" style="background:#0284c7;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(2,132,199,0.4);">⚡ Set URL</button>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:#0f172a;border:1px dashed #334155;border-radius:8px;padding:6px 10px;font-size:10px;">
+                  <div style="color:#94a3b8;">
+                    Generated URL Slug: <strong id="auto-slug-preview" style="color:#38bdf8;font-family:monospace;font-size:11px;">${restaurant.slug || 'restaurant'}</strong>
+                  </div>
+                  <div style="color:#34d399;font-weight:bold;">
+                    ✓ Auto-Formatted
+                  </div>
+                </div>
+              </div>
+
+              <!-- Task 5: Direct Link & Custom Domain Section (100% Working Browser Ready) -->
+              <div style="background:#020617;border:1px solid #1e293b;border-radius:16px;padding:14px;margin-bottom:18px;">
+                <label style="font-size:11px;font-weight:700;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">🚀 Live Browser Storefront Link (100% Working):</label>
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <input id="direct-storefront-url" type="text" readonly value="${directUrl}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#38bdf8;font-weight:bold;font-family:monospace;" />
+                  <button id="copy-direct-url-btn" style="background:#0284c7;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy</button>
+                  <button id="launch-direct-store-btn" style="background:#10b981;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Open</button>
+                </div>
+                <label style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">🌐 Custom Domain (Apni Domain e.g. apna-restaurant.com):</label>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <input id="custom-domain-input" type="text" placeholder="e.g. apna-restaurant.com" value="${restaurant.customDomain || ''}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;" />
+                  <button id="open-custom-domain-btn" style="background:#f59e0b;color:#000;border:none;padding:8px 12px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Open Domain</button>
+                  <button id="guide-custom-domain-btn" style="background:#334155;color:#f8fafc;border:1px solid #475569;padding:8px 12px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">⚙️ DNS Guide</button>
+                </div>
+                <p style="font-size:10px;color:#94a3b8;margin:4px 0 0;">💡 <strong>Domain Kaam Kaise Karegi:</strong> Domain tab chalegi jab uska DNS is app par point hoga. Agar connect nahi kiya toh <strong>"⚙️ DNS Guide"</strong> dabayein — 1 minute mein connect ho jayegi!</p>
+              </div>
+
+              <!-- Task 2: Theme Presets -->
+              <div style="margin-bottom:16px;">
+                <label style="font-size:11px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">Select Visual Theme Preset:</label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                  ${presets.map(p => `
+                    <div class="theme-preset-option" data-primary="${p.p}" data-secondary="${p.s}" style="border:1px solid #334155;border-radius:12px;padding:8px;cursor:pointer;background:#1e293b;transition:all 0.2s;">
+                      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                        <span style="width:14px;height:14px;border-radius:4px;background:${p.p};display:inline-block;"></span>
+                        <span style="font-size:11px;font-weight:700;color:#fff;">${p.name.split('&')[0]}</span>
+                      </div>
+                      <span style="font-size:9px;color:#94a3b8;">${p.badge}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Custom Colors Pickers -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Primary Brand Color:</label>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <input id="theme-primary-color" type="color" value="${restaurant.primaryColor || '#f97316'}" style="width:36px;height:36px;border-radius:8px;border:none;cursor:pointer;background:none;" />
+                    <input id="theme-primary-hex" type="text" value="${restaurant.primaryColor || '#f97316'}" style="flex:1;background:#020617;border:1px solid #334155;border-radius:8px;padding:6px 10px;font-size:11px;color:#fff;font-family:monospace;" />
+                  </div>
+                </div>
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Layout Style:</label>
+                  <select id="theme-layout-style" style="width:100%;background:#020617;border:1px solid #334155;border-radius:8px;padding:8px 10px;font-size:11px;color:#fff;">
+                    <option value="modern-showcase" ${restaurant.layoutStyle === 'modern-showcase' ? 'selected' : ''}>Modern Showcase (Hero Spotlight)</option>
+                    <option value="bistro-elegance" ${restaurant.layoutStyle === 'bistro-elegance' ? 'selected' : ''}>Bistro Elegance (Clean luxury)</option>
+                    <option value="compact-grid" ${restaurant.layoutStyle === 'compact-grid' ? 'selected' : ''}>Compact Grid (High-speed menu)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Visual Storefront Food Photo Presentation Mode -->
+              <div style="background:#020617;border:1px solid #0284c7;border-radius:16px;padding:16px;margin-bottom:18px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <label style="font-size:11px;font-weight:800;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;">
+                    📸 Customer Storefront Food Photos Display Style:
+                  </label>
+                  <span style="font-size:10px;background:#0369a1;color:#fff;padding:2px 8px;border-radius:6px;font-weight:bold;">Instant 1-Click</span>
+                </div>
+                <p style="font-size:10px;color:#94a3b8;margin:0 0 12px 0;">
+                  Customer website par dishes ki pictures kis modern visual style mein display hon:
+                </p>
+
+                <!-- 5 Modern Photo Modes -->
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(88px, 1fr));gap:8px;">
+                  <button type="button" class="theme-photo-mode-btn" data-mode="square" style="padding:10px 6px;border-radius:10px;font-size:11px;font-weight:bold;border:1px solid ${(restaurant.imageOrientation === 'square' || !restaurant.imageOrientation) ? '#0284c7' : '#334155'};background:${(restaurant.imageOrientation === 'square' || !restaurant.imageOrientation) ? 'rgba(2,132,199,0.2)' : '#0f172a'};color:${(restaurant.imageOrientation === 'square' || !restaurant.imageOrientation) ? '#38bdf8' : '#cbd5e1'};cursor:pointer;text-align:center;">
+                    ⏹️ Square<br><span style="font-size:9px;color:#94a3b8;font-weight:normal;">1:1 Box</span>
+                  </button>
+                  <button type="button" class="theme-photo-mode-btn" data-mode="horizontal" style="padding:10px 6px;border-radius:10px;font-size:11px;font-weight:bold;border:1px solid ${restaurant.imageOrientation === 'horizontal' ? '#0284c7' : '#334155'};background:${restaurant.imageOrientation === 'horizontal' ? 'rgba(2,132,199,0.2)' : '#0f172a'};color:${restaurant.imageOrientation === 'horizontal' ? '#38bdf8' : '#cbd5e1'};cursor:pointer;text-align:center;">
+                    ↔️ Landscape<br><span style="font-size:9px;color:#94a3b8;font-weight:normal;">16:9 Card</span>
+                  </button>
+                  <button type="button" class="theme-photo-mode-btn" data-mode="vertical" style="padding:10px 6px;border-radius:10px;font-size:11px;font-weight:bold;border:1px solid ${restaurant.imageOrientation === 'vertical' ? '#0284c7' : '#334155'};background:${restaurant.imageOrientation === 'vertical' ? 'rgba(2,132,199,0.2)' : '#0f172a'};color:${restaurant.imageOrientation === 'vertical' ? '#38bdf8' : '#cbd5e1'};cursor:pointer;text-align:center;">
+                    ↕️ Reel<br><span style="font-size:9px;color:#94a3b8;font-weight:normal;">3:4 Portrait</span>
+                  </button>
+                  <button type="button" class="theme-photo-mode-btn" data-mode="natural" style="padding:10px 6px;border-radius:10px;font-size:11px;font-weight:bold;border:1px solid ${restaurant.imageOrientation === 'natural' ? '#0284c7' : '#334155'};background:${restaurant.imageOrientation === 'natural' ? 'rgba(2,132,199,0.2)' : '#0f172a'};color:${restaurant.imageOrientation === 'natural' ? '#38bdf8' : '#cbd5e1'};cursor:pointer;text-align:center;">
+                    🌟 Natural<br><span style="font-size:9px;color:#94a3b8;font-weight:normal;">No Crop</span>
+                  </button>
+                  <button type="button" class="theme-photo-mode-btn" data-mode="circle" style="padding:10px 6px;border-radius:10px;font-size:11px;font-weight:bold;border:1px solid ${restaurant.imageOrientation === 'circle' ? '#0284c7' : '#334155'};background:${restaurant.imageOrientation === 'circle' ? 'rgba(2,132,199,0.2)' : '#0f172a'};color:${restaurant.imageOrientation === 'circle' ? '#38bdf8' : '#cbd5e1'};cursor:pointer;text-align:center;">
+                    ⭕ Circle<br><span style="font-size:9px;color:#94a3b8;font-weight:normal;">Round Badge</span>
+                  </button>
+                </div>
+                <input type="hidden" id="theme-image-orientation" value="${restaurant.imageOrientation || 'square'}" />
+              </div>
+
+              <!-- Announcement Banner -->
+              <div style="margin-bottom:20px;">
+                <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Top Announcement Bar Text:</label>
+                <input id="theme-announcement" type="text" placeholder="e.g. 🔥 Special Offer: 20% OFF on all Karahi this weekend!" value="${restaurant.announcementText || ''}" style="width:100%;background:#020617;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;" />
+              </div>
+
+              <!-- Action Buttons -->
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+                <button id="open-slip-from-theme-btn" type="button" style="background:#0284c7;color:#fff;border:none;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(2,132,199,0.35);">
+                  <span>🧾</span> <span>Edit POS Slip Layout</span>
+                </button>
+                <div style="display:flex;gap:10px;">
+                  <button id="cancel-theme-btn" style="background:#1e293b;color:#cbd5e1;border:none;padding:10px 18px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;">Cancel</button>
+                  <button id="save-theme-btn" style="background:#ea580c;color:#fff;border:none;padding:10px 22px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(234,88,12,0.4);">💾 Save Restaurant Theme</button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          // Wire Modal Events
+          document.getElementById('close-theme-modal').onclick = () => modal.remove();
+          document.getElementById('cancel-theme-btn').onclick = () => modal.remove();
+
+          const slipFromThemeBtn = document.getElementById('open-slip-from-theme-btn');
+          if (slipFromThemeBtn) {
+            slipFromThemeBtn.onclick = () => {
+              modal.remove();
+              if (typeof window.openSlipLayoutCustomizer === 'function') {
+                window.openSlipLayoutCustomizer(restaurant.id);
+              }
+            };
+          }
+
+          // Preset click listener
+          modal.querySelectorAll('.theme-preset-option').forEach(el => {
+            el.onclick = () => {
+              const p = el.getAttribute('data-primary');
+              document.getElementById('theme-primary-color').value = p;
+              document.getElementById('theme-primary-hex').value = p;
+              modal.querySelectorAll('.theme-preset-option').forEach(o => o.style.borderColor = '#334155');
+              el.style.borderColor = '#f97316';
+            };
+          });
+
+          // Sync color picker with hex
+          const colorInput = document.getElementById('theme-primary-color');
+          const hexInput = document.getElementById('theme-primary-hex');
+          colorInput.oninput = () => { hexInput.value = colorInput.value; };
+          hexInput.oninput = () => { colorInput.value = hexInput.value; };
+
+          // Helper: format string to clean web URL slug
+          function makeSlug(str) {
+            return (str || '')
+              .toString()
+              .toLowerCase()
+              .trim()
+              .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/[\s_]+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-+|-+$/g, '');
+          }
+
+          const autoInput = document.getElementById('auto-slug-input');
+          const autoPreview = document.getElementById('auto-slug-preview');
+          const directInput = document.getElementById('direct-storefront-url');
+
+          if (autoInput) {
+            autoInput.oninput = function() {
+              const slug = makeSlug(this.value) || 'restaurant';
+              if (autoPreview) autoPreview.textContent = slug;
+              restaurant.slug = slug;
+              const newDirect = formatDirectStoreUrl(restaurant);
+              if (directInput) directInput.value = newDirect;
+            };
+          }
+
+          const setSlugBtn = document.getElementById('auto-slug-generate-btn');
+          if (setSlugBtn) {
+            setSlugBtn.onclick = function() {
+              const slug = makeSlug(autoInput.value) || 'restaurant';
+              restaurant.slug = slug;
+              const newDirect = formatDirectStoreUrl(restaurant);
+              if (directInput) directInput.value = newDirect;
+              if (autoPreview) autoPreview.textContent = slug;
+              localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+              fetch('/api/sync/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates: { restaurants: rests } })
+              }).catch(() => {});
+              alert('⚡ URL Successfully Generated & Set!\n\nNew Store URL:\n' + newDirect);
+            };
+          }
+
+          // Photo mode buttons in Theme Editor (Wide, Mobile Reel, Natural)
+          modal.querySelectorAll('.theme-photo-mode-btn').forEach(btn => {
+            btn.onclick = function() {
+              const mode = this.getAttribute('data-mode');
+              document.getElementById('theme-image-orientation').value = mode;
+              modal.querySelectorAll('.theme-photo-mode-btn').forEach(b => {
+                b.style.borderColor = '#334155';
+                b.style.background = '#0f172a';
+                b.style.color = '#cbd5e1';
+              });
+              this.style.borderColor = '#0284c7';
+              this.style.background = 'rgba(2,132,199,0.2)';
+              this.style.color = '#38bdf8';
+            };
+          });
+
+          // Copy URL
+          document.getElementById('copy-direct-url-btn').onclick = () => {
+            const currentUrl = directInput ? directInput.value : directUrl;
+            navigator.clipboard.writeText(currentUrl);
+            alert('Restaurant Direct Link Copied!\n' + currentUrl);
+          };
+
+          // Launch Storefront
+          document.getElementById('launch-direct-store-btn').onclick = () => {
+            const currentUrl = directInput ? directInput.value : directUrl;
+            window.open(currentUrl, '_blank');
+          };
+
+          // Open Custom Domain
+          document.getElementById('open-custom-domain-btn').onclick = () => {
+            let d = document.getElementById('custom-domain-input').value.trim();
+            if (!d) {
+              alert('Pehle apni domain likhein (e.g. apna-restaurant.com)!');
+              return;
+            }
+            if (!d.startsWith('http://') && !d.startsWith('https://')) d = 'https://' + d;
+            window.open(d, '_blank');
+            alert('🌐 Opening ' + d + ' in browser...\n\n💡 Note: Agar browser mein "Site can\'t be reached" aaye, toh iska matlab hai aapki domain ka DNS abhi is app par point nahi hua.\n\n"⚙️ DNS Guide" button dabayein aur 1 minute mein connect karein!');
+          };
+
+          // Open DNS Setup Guide
+          document.getElementById('guide-custom-domain-btn').onclick = () => {
+            const currentDomain = document.getElementById('custom-domain-input').value.trim() || restaurant.customDomain || 'apna-restaurant.com';
+            window.openDnsGuideModal(restaurant, directUrl, currentDomain);
+          };
+
+          // Save Theme to API
+          document.getElementById('save-theme-btn').onclick = async () => {
+            const pColor = hexInput.value.trim() || '#f97316';
+            const layout = document.getElementById('theme-layout-style').value;
+            const ann = document.getElementById('theme-announcement').value.trim();
+            const cDomain = document.getElementById('custom-domain-input').value.trim();
+
+            const saveBtn = document.getElementById('save-theme-btn');
+            saveBtn.textContent = '⏳ Saving...';
+            saveBtn.disabled = true;
+
+            try {
+              // Update theme
+              await fetch(`/api/restaurants/${restaurant.id}/theme`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  id: restaurant.id,
+                  primaryColor: pColor,
+                  layoutStyle: layout,
+                  announcementText: ann
+                })
+              });
+
+              // Update custom domain
+              if (cDomain !== (restaurant.customDomain || '')) {
+                await fetch(`/api/restaurants/${restaurant.id}/domain`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    id: restaurant.id,
+                    customDomain: cDomain
+                  })
+                });
+              }
+
+              // Update local state directly
+              const autoInputVal = document.getElementById('auto-slug-input') ? document.getElementById('auto-slug-input').value : '';
+              if (autoInputVal) restaurant.slug = makeSlug(autoInputVal);
+              const imgOrient = document.getElementById('theme-image-orientation') ? document.getElementById('theme-image-orientation').value : 'horizontal';
+
+              restaurant.imageOrientation = imgOrient;
+              restaurant.primaryColor = pColor;
+              restaurant.layoutStyle = layout;
+              restaurant.announcementText = ann;
+              restaurant.customDomain = cDomain;
+              localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+              localStorage.setItem('bitehub_dish_image_mode_' + restaurant.id, imgOrient);
+
+              document.documentElement.setAttribute('data-dish-image-mode', imgOrient);
+
+              await backupToVault();
+
+              // Sync full restaurant update to server
+              await fetch('/api/sync/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates: { restaurants: rests } })
+              }).catch(() => {});
+
+              alert(`✅ Theme & Picture display mode for "${restaurant.name}" successfully updated!`);
+              modal.remove();
+              window.location.reload();
+            } catch (err) {
+              alert('Error saving theme: ' + err.message);
+              saveBtn.textContent = '💾 Save Restaurant Theme';
+              saveBtn.disabled = false;
+            }
+          };
+        };
+
+        // Task: Put Theme & Direct Link buttons INSIDE Restaurant Card in Super Admin Console (Remove floating launcher from main screen)
+        function injectSuperAdminCardButtons() {
+          try {
+            // Remove floating launcher from main screen if present
+            const floating = document.getElementById('mghub-admin-theme-launcher');
+            if (floating) floating.remove();
+
+            // Find all "Edit Restaurant Info" buttons inside Super Admin Console
+            const editButtons = document.querySelectorAll('button[title="Edit Restaurant Info"]');
+            if (!editButtons || editButtons.length === 0) return;
+
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            let rests = [];
+            try { rests = JSON.parse(restsRaw) || []; } catch {}
+            if (rests.length === 0) return;
+
+            editButtons.forEach(function(editBtn) {
+              const parentBar = editBtn.parentElement;
+              if (!parentBar || parentBar.querySelector('.mghub-card-theme-btn')) return;
+
+              // Find restaurant name from the card
+              const card = editBtn.closest('div[class*="rounded"]') || parentBar.closest('div');
+              let matchedRest = null;
+              if (card && card.textContent) {
+                matchedRest = rests.find(function(r) { return r.name && card.textContent.includes(r.name); });
+              }
+              if (!matchedRest) matchedRest = rests[0];
+
+              const restId = matchedRest.id;
+              const directUrl = formatDirectStoreUrl(matchedRest);
+
+              // 1. Theme Button
+              const themeBtn = document.createElement('button');
+              themeBtn.type = 'button';
+              themeBtn.className = 'mghub-card-theme-btn p-2 text-amber-400 hover:text-white rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 cursor-pointer transition-colors text-xs font-bold flex items-center gap-1';
+              themeBtn.title = 'Customize Visual Theme for ' + matchedRest.name;
+              themeBtn.innerHTML = '<span>🎨</span> <span class="hidden sm:inline">Theme</span>';
+              themeBtn.onclick = function(e) {
+                e.stopPropagation();
+                window.openRestaurantThemeEditor(restId);
+              };
+
+              // 2. Direct Link Button (Zero AI Studio - Pure Custom Domain Link)
+              const linkBtn = document.createElement('button');
+              linkBtn.type = 'button';
+              linkBtn.className = 'mghub-card-link-btn p-2 text-cyan-400 hover:text-white rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 cursor-pointer transition-colors text-xs font-bold flex items-center gap-1';
+              linkBtn.title = 'Direct Storefront Link: ' + directUrl;
+              linkBtn.innerHTML = '<span>🔗</span> <span class="hidden sm:inline">Direct Link</span>';
+              linkBtn.onclick = function(e) {
+                e.stopPropagation();
+                navigator.clipboard.writeText(directUrl);
+                window.open(directUrl, '_blank');
+                alert('🚀 Opening ' + matchedRest.name + ' Storefront in new tab!\n\n' + directUrl + '\n\n✨ Link copy bhi ho gaya hai aur new tab mein open bhi ho gaya hai!');
+              };
+
+              // Insert before Edit button inside the card's action buttons
+              parentBar.insertBefore(themeBtn, editBtn);
+              parentBar.insertBefore(linkBtn, editBtn);
+
+              // 3. Menu Manager Button (Manual Menu Management)
+              const menuBtn = document.createElement('button');
+              menuBtn.type = 'button';
+              menuBtn.className = 'mghub-card-menu-btn p-2 text-emerald-400 hover:text-white rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 cursor-pointer transition-colors text-xs font-bold flex items-center gap-1';
+              menuBtn.title = 'Manage Menu Manually for ' + matchedRest.name;
+              menuBtn.innerHTML = '<span>📋</span> <span class="hidden sm:inline">Menu</span>';
+              menuBtn.onclick = function(e) {
+                e.stopPropagation();
+                window.openManualMenuManager(restId);
+              };
+              parentBar.insertBefore(menuBtn, editBtn);
+
+              // 4. Slip Layout Customizer Button (Thermal POS Receipt Designer)
+              const slipBtn = document.createElement('button');
+              slipBtn.type = 'button';
+              slipBtn.className = 'mghub-card-slip-btn p-2 text-orange-400 hover:text-white rounded-xl bg-orange-500/15 hover:bg-orange-500/25 border border-orange-500/30 cursor-pointer transition-colors text-xs font-bold flex items-center gap-1';
+              slipBtn.title = 'Customize Thermal Receipt & Print Slip Layout for ' + matchedRest.name;
+              slipBtn.innerHTML = '<span>🧾</span> <span class="hidden sm:inline">Slip Layout</span>';
+              slipBtn.onclick = function(e) {
+                e.stopPropagation();
+                if (typeof window.openSlipLayoutCustomizer === 'function') {
+                  window.openSlipLayoutCustomizer(restId);
+                } else {
+                  alert('Slip Layout Customizer loading...');
+                }
+              };
+              parentBar.insertBefore(slipBtn, editBtn);
+            });
+          } catch (e) {
+            console.warn('[Admin] Button injection notice:', e);
+          }
+        }
+
+        // Initialize background tasks
+        initIDB();
+        window.addEventListener('beforeunload', backupToVault);
+        setInterval(backupToVault, 10000);
+        setInterval(alignStorefrontHeaderButtons, 1000);
+        setInterval(checkAndApplyRestaurantPWA, 2500);
+        setInterval(injectSuperAdminCardButtons, 800);
+        setInterval(sanitizeVisibleAdminLinks, 1000);
+
+        setTimeout(() => {
+          backupToVault();
+          checkAndApplyRestaurantPWA();
+          alignStorefrontHeaderButtons();
+          injectSuperAdminCardButtons();
+          sanitizeVisibleAdminLinks();
+        }, 1200);
+      })();
+    </script>
+    <script>
+      // Safe toast notification replacement for window.alert to prevent iframe freeze
+      window.alert = function(msg) {
+        if (!msg) return;
+        console.warn('[Notice]', msg);
+        let toast = document.getElementById('global-safe-toast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'global-safe-toast';
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999999;background:#0f172a;border:1px solid #f97316;color:#f8fafc;padding:12px 22px;border-radius:12px;font-family:sans-serif;font-size:13px;font-weight:600;box-shadow:0 12px 35px rgba(0,0,0,0.6);display:flex;align-items:center;gap:10px;pointer-events:none;transition:all 0.25s ease;';
+          document.body.appendChild(toast);
+        }
+        toast.innerHTML = '<span>🔔</span> <span>' + String(msg) + '</span>';
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(function() {
+          if (toast) {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(12px)';
+          }
+        }, 4000);
+      };
+
+      // Global Image Error Resilience: Prevent any corrupt / broken image icons
+      window.addEventListener('error', function(event) {
+        var target = event.target;
+        if (target && target.tagName === 'IMG' && !target.dataset.fallbackApplied) {
+          target.dataset.fallbackApplied = 'true';
+          target.src = 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80';
+        }
+      }, true);
+    </script>
+    <script src="/menu-order-suite.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" crossorigin src="/assets/index-DRP79dIO.js"></script>
+  </body>
+</html>
